@@ -51,8 +51,8 @@ public:
 
     int pop_back() {
         if(size > 0) {
-            return data[size];
             size--;
+            return data[size];
         }
     }
 

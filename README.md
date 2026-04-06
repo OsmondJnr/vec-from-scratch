@@ -23,6 +23,8 @@ Built as a learning exercise to deeply understand:
 | `pop_back()` | Removes the last element |
 | `get(int index)` | Returns element at index (bounds-checked) |
 | `set(int index, int val)` | Updates element at index (bounds-checked) |
+| `insert(int index, int val)` | Inserts value at index, shifting elements right; resizes if needed |
+| `remove(int index)` | Removes element at index, shifting elements left |
 | `find(int val)` | Returns first index of value, or `-1` |
 | `clear()` | Resets size to 0 (O(1)) |
 | `getSize()` | Returns current number of elements |
@@ -64,6 +66,10 @@ int main() {
     arr.set(0, 99);
     arr.pop_back();
 
+    arr.insert(1, 50);            // [99, 50, 20]
+    std::cout << arr.get(1);      // 50
+
+    arr.remove(0);                // [50, 20]
     std::cout << arr.getSize();   // 2
 }
 ```
@@ -82,13 +88,13 @@ g++ -std=c++11 dynamic_array.cpp -o arr && ./arr
 
 ## Roadmap / Planned Improvements
 
-- [ ] Fix bounds check bug in `get()` (`index >= size`, not `index > data[size]`)
-- [ ] Fix operator bug in `set()` (`&&` not `||`)
-- [ ] Make `pop_back()` return the removed value
+- [x] Fix bounds check bug in `get()`
+- [x] Fix operator bug in `set()`
+- [x] Add `insert(index, value)` and `remove(index)` methods
+- [x] Fix `pop_back()` — return statement is before `size--` (unreachable code)
 - [ ] Implement copy constructor & copy assignment (Rule of Three)
 - [ ] Shrink capacity when size drops below 25% of capacity
 - [ ] Template support — `DynamicArray<T>` instead of `int` only
-- [ ] Add `insert(index, value)` and `remove(index)` methods
 - [ ] Unit tests
 
 ---
