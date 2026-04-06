@@ -76,4 +76,37 @@ public:
     void clear() {
         size = 0;
     }
+
+    void insert(int index,int value) {
+        if(index < 0 || index >= size) {
+            cout << "Index out of bounds" << endl;
+            return;
+        }
+
+        if (size == capacity) {
+            capacity = capacity * 2;
+            int* newData = new int[capacity];
+            for(int i = 0; i < size; i++) {
+                newData[i] = data[i];
+            }
+            delete[] data;
+            data = newData;
+        }
+        for(int i = size; i > index; i--) {
+            data[i] = data[i - 1];
+        }
+        data[index] = value;
+        size++;
+    };
+
+    void remove(int index) {
+        if(index < 0 || index >= size) {
+            cout << "Index out of bounds" << endl;
+            return;
+        }
+        for(int i = index; i < size-1; i++) {
+            data[i] = data[i + 1];
+        }
+        size--;
+    }
 };
